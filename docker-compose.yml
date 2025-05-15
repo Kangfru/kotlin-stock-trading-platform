@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - stock_network
+
+volumes:
+  redis_data:
+
+networks:
+  stock_network:
+    driver: bridge
+
+# docker exec -it $(docker ps -q --filter "name=redis") redis-cli
