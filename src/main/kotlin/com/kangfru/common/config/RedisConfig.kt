@@ -36,10 +36,28 @@ class RedisConfig {
             hashKeySerializer = StringRedisSerializer()
             hashValueSerializer = StringRedisSerializer()
 
-            // 트랜잭션 지원 활성화
+//             트랜잭션 지원 활성화
             setEnableTransactionSupport(true)
             afterPropertiesSet()
         }
+    }
+
+    @Bean
+    fun lockRedisTemplate(connectionFactory: RedisConnectionFactory): RedisTemplate<String, String> {
+        val template = RedisTemplate<String, String>()
+        template.connectionFactory = connectionFactory
+
+        // 트랜잭션 지원 명시적으로 비활성화
+        template.setEnableTransactionSupport(false)
+
+        // 직렬화 설정
+        val stringSerializer = StringRedisSerializer()
+        template.keySerializer = stringSerializer
+        template.valueSerializer = stringSerializer
+        template.hashKeySerializer = stringSerializer
+        template.hashValueSerializer = stringSerializer
+
+        return template
     }
 
 }
