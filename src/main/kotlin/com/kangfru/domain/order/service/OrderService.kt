@@ -1,6 +1,5 @@
 package com.kangfru.domain.order.service
 
-import com.kangfru.common.lock.DistributedLock
 import com.kangfru.common.lock.RedissonLockService
 import com.kangfru.domain.account.model.Account
 import com.kangfru.domain.account.repository.AccountRepository
