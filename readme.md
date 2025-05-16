@@ -9,3 +9,9 @@
    1. redisTemplate bean 생성 시 setEnableTransactionSupport(true) 기능을 통해 Redis 작업을 Spring의 트랜잭션 관리 범위 내에서 수행할 수 있게 해준다.
       - 이 설정이 활성화되면 Redis 명령은 곧바로 실행되지 않고 트랜잭션이 커밋될 때까지 큐에 쌓이게 된다.
       - `setIfAbsent`는 트랜잭션 모드에서 null을 반환한다.
+      - Redis 의 트랜잭션은 아래와 같다.
+      - MULTI(트랜잭션 시작) : Redis의 트랜잭션을 시작하는 커맨드. 트랜잭션을 시작하면 Redis 커맨드는 바로 실행되는게 아닌 queue에 쌓인다.
+      - EXEC(정상 커밋) : 정상적으로 처리되어 queue에 쌓여있는 명령어를 일괄적으로 실행
+      - DISCARD(롤백) : queue에 쌓여있는 명령어를 일괄적으로 폐기.
+      - WATCH(락) : Redis에서 Lock을 담당하는 명령어로 낙관적 락(Optimistic Lock) 기반.
+        WATCH 명령어를 사용하면 이 후 UNWATCH 되기전에는 1번의 EXEC 또는 TRANSACTION이 아닌 커맨드만 허용 됨.
