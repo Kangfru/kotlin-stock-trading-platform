@@ -30,6 +30,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("io.github.microutils:kotlin-logging:3.0.5")
 
     // Database
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
