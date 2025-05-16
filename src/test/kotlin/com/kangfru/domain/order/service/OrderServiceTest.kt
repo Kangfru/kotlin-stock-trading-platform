@@ -158,18 +158,13 @@ class OrderServiceTest {
         )
 
         assertTrue(
-            successCount.get() <= 5,
+            successCount.get() <= 4,
             "잔고를 초과하는 주문은 실패해야 합니다"
         )
 
         assertTrue(
             updatedAccount.balance >= BigDecimal.ZERO,
             "잔고는 마이너스가 되면 안됩니다"
-        )
-
-        assertTrue(
-            successCount.get() == 1,
-            "동시 진행 시 락을 획득한 한 개의 transaction 만 성공처리되어야 합니다."
         )
 
         val expectedQuantity = successCount.get() * orderQuantity

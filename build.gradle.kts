@@ -35,6 +35,7 @@ dependencies {
     // Database
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("io.lettuce:lettuce-core")
+    implementation("org.redisson:redisson-spring-boot-starter:3.25.2")
     runtimeOnly("com.h2database:h2")
 
     // Documentation
